@@ -22,14 +22,14 @@
         "default": "Ctrl+Shift+2"
       },
       "global": true,
-      "description": "Toggle webcam in Hangouts"
+      "description": "Toggle microphone in Hangouts"
     },
     "toggleWebcam": {
       "suggested_key": {
         "default": "Ctrl+Shift+3"
       },
       "global": true,
-      "description": "Toggle microphone in Hangouts"
+      "description": "Toggle webcam in Hangouts"
     }
   },
   "content_scripts": [
@@ -37,7 +37,9 @@
       "js": [ "assets/js/update.js" ],
       "matches": [
         "https://plus.google.com/hangouts/*",
-        "https://talkgadget.google.com/hangouts/*"
+        "https://talkgadget.google.com/hangouts/*",
+        "https://meet.google.com/*",
+        "https://hangouts.google.com/*"
       ]
     }
   ],
@@ -46,5 +48,8 @@
       "assets/js/background.js"
     ],
     "persistent": false
+  },
+  "browser_action": {
+      "togleMic": "Toggle microphone"
   }
 }

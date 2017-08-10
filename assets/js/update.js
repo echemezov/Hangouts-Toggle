@@ -1,48 +1,40 @@
-var muted = false;
-var mutedMicrophone = false;
-var mutedWebcam = false;
+var microphoneSelector;
+var webcamSelector;
+var stateSelector;
+
+microphoneSelector = '.gbbhzb';
+webcamSelector = '.YczAdf';
+webcamStateClass = 'U8OAre';
+
+if (document.location.href.indexOf("://meet.google.com/") > -1) {
+    microphoneSelector ='.cwIDqe';
+} else if (document.location.href.indexOf("://hangouts.google.com/") > -1) {
+    microphoneSelector = '.IQ';
+    webcamSelector = '.QQ';
+    webcamStateClass = 'a-b-B';    
+}
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request == 'toggle') {
-        muted = !muted;
-
-        updateButton('.gbbhzb', muted); // Microphone
-        updateButton('.YczAdf', muted); // Webcam
-
-        mutedMicrophone = muted;
-        mutedWebcam = muted;
+        updateButton(microphoneSelector); // Microphone
+        updateButton(webcamSelector); // Webcam
 
         return true;
     } else if (request == 'toggleMicrophone') {
-        mutedMicrophone = !mutedMicrophone;
-
-        updateButton('.gbbhzb', mutedMicrophone); // Microphone
+        updateButton(microphoneSelector); // Microphone
     } else if (request == 'toggleWebcam') {
-        mutedWebcam = !mutedWebcam;
-
-        updateButton('.YczAdf', mutedWebcam); // Webcam
+        updateButton(webcamSelector); // Webcam
     }
 
     return false;
 });
 
 function updateButton(selector, state) {
-    // If muted == true AND hangouts muted == true, do nothing.
-    // If muted == false AND hangouts muted == false, do nothing.
-
     var button = document.querySelector(selector);
-
-    // If muted == false AND hangouts muted == true, simulate click in Hangouts.
-    if (!button.classList.contains('U8OAre') && state) {
-        simulateClick(button);
+    if (!button) {
+        console.warn('Mute/unmute Button is not found (used selector: ' + selector + ')');
     }
-
-    button = document.querySelector(selector); //Reselect to ensure there is a element which is valid, since we may have clicked simulateClick.
-
-    // If muted == true AND hangouts muted == false, simulate click in Hangouts.
-    if (button.classList.contains('U8OAre') && !state) {
-        simulateClick(button);
-    }
+    simulateClick(button);
 }
 
 function simulateClick (element) {

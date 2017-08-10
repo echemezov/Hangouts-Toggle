@@ -5,4 +5,4 @@ You're able to select the shortcut from the Extensions page in Chrome, at the ri
 
 Chrome web store
 -----------
-This Chrome Extension is published on the [Chrome web store](https://chrome.google.com/webstore/detail/nidndogcoebjkeffddmaijgegbenafaa).
+This Chrome Extension is not published yet on the [Chrome web store](https://chrome.google.com/webstore).
