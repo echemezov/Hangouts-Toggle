@@ -7,7 +7,8 @@ webcamSelector = '.YczAdf';
 webcamStateClass = 'U8OAre';
 
 if (document.location.href.indexOf("://meet.google.com/") > -1) {
-    microphoneSelector ='.cwIDqe';
+    microphoneSelector ='.M3NQIf .cwIDqe';
+    webcamSelector = '.RTgYBc .cwIDqe'
 } else if (document.location.href.indexOf("://hangouts.google.com/") > -1) {
     microphoneSelector = '.IQ';
     webcamSelector = '.QQ';
